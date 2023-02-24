@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MireaPR_1</string>
+    <string name="pepperoni">Pepperoni</string>
+    <string name="price">From 300$</string>
+    <string name="pizza_description">Pizza with\npepperoni</string>
+    <string name="make_an_order">Make an order</string>
 </resources>
