@@ -4,4 +4,7 @@
     <string name="price">From 300$</string>
     <string name="pizza_description">Pizza with pepperoni, cheese and tomato sauce</string>
     <string name="make_an_order">Make an order</string>
+    <string name="latte">Lat(t)e</string>
+    <string name="latte_description">Latte with milk and caramel</string>
+    <string name="latte_price">From 5$</string>
 </resources>

@@ -2,6 +2,7 @@ package ru.palyanaff.mireapr_1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,20 +10,31 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ru.palyanaff.mireapr_1.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+    private ActivityMainBinding binding;
+    private List orderList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        TextView pizzaName = (TextView) findViewById(R.id.pizza_name);
-        binding.pizzaName.setText("Pepperoni");
-        binding.makeOrderButton.setOnClickListener(view -> {
-            Log.i(TAG, "Button click");
+        orderList = new ArrayList<String>();
+
+        binding.pizzaButton.setOnClickListener(view -> {
+            Log.i(TAG, "Add pizza to basket (+300)");
+            orderList.add(binding.pizzaName.getText().toString());
+        });
+
+        binding.coffeeButton.setOnClickListener(view -> {
+            Log.i(TAG, "Add coffee to basket (+300)");
+            orderList.add(binding.coffeeName.getText().toString());
         });
 
         Log.i(TAG, "Create");
@@ -30,7 +42,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addToBasket(View view) {
-        Log.i(TAG, "Add pizza to basket (+300)");
+        Log.i(TAG, "Button click");
+        Intent intent = new Intent(this, SecondActivity.class);
+        intent.putExtra("Order", orderList.toString());
+        startActivity(intent);
     }
     @Override
     protected void onStart() {
