@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -12,8 +15,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        TextView pizzaName = (TextView) findViewById(R.id.pizza_name);
+        Button button = (Button) findViewById(R.id.make_order_button);
+        button.setOnClickListener(view -> {
+            Log.i(TAG, "Button click");
+        });
+
         Log.i(TAG, "Create");
         Toast.makeText(this, "Create", Toast.LENGTH_SHORT).show();
+    }
+
+    public void addToBasket(View view) {
+        Log.i(TAG, "Add pizza to basket (+300)");
     }
     @Override
     protected void onStart() {
