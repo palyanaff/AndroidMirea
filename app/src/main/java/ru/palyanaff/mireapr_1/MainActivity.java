@@ -9,16 +9,19 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import ru.palyanaff.mireapr_1.databinding.ActivityMainBinding;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         TextView pizzaName = (TextView) findViewById(R.id.pizza_name);
-        Button button = (Button) findViewById(R.id.make_order_button);
-        button.setOnClickListener(view -> {
+        binding.pizzaName.setText("Pepperoni");
+        binding.makeOrderButton.setOnClickListener(view -> {
             Log.i(TAG, "Button click");
         });
 
