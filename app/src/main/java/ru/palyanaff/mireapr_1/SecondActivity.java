@@ -2,7 +2,12 @@ package ru.palyanaff.mireapr_1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import ru.palyanaff.mireapr_1.databinding.ActivitySecondBinding;
 
@@ -12,6 +17,7 @@ public class SecondActivity extends AppCompatActivity {
     private ActivitySecondBinding binding;
     Bundle arguments;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,7 +25,14 @@ public class SecondActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         Bundle arguments = getIntent().getExtras();
+        binding.text.setText("Address: " + arguments.get("Address").toString() + "\n" +
+                "Order: " + arguments.get("Order").toString());
 
-        binding.text.setText("Your order: " + arguments.get("Order").toString());
+        binding.deliverButton.setOnClickListener(v-> {
+            Intent intent = new Intent();
+            intent.putExtra("Order", arguments.get("Order").toString());
+            setResult(RESULT_OK, intent);
+            finish();
+        });
     }
 }
