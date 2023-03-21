@@ -25,7 +25,14 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        orderList = new ArrayList<String>();
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .setReorderingAllowed(true)
+                    .add(R.id.fragment_container_view, BlankFragment.class, null)
+                    .commit();
+        }
+
+        /*orderList = new ArrayList<String>();
 
         binding.pizzaButton.setOnClickListener(view -> {
             Log.i(TAG, "Add pizza to basket");
@@ -35,16 +42,16 @@ public class MainActivity extends AppCompatActivity {
         binding.coffeeButton.setOnClickListener(view -> {
             Log.i(TAG, "Add coffee to basket");
             orderList.add(binding.coffeeName.getText().toString());
-        });
+        });*/
 
     }
 
-    public void goToBasket(View view) {
+   /* public void goToBasket(View view) {
         Log.i(TAG, "Button click");
         Intent intent = new Intent(this, SecondActivity.class);
         intent.putExtra("Order", orderList.toString());
         intent.putExtra("Address", binding.editTextAddress.getText().toString());
         startActivity(intent);
-    }
+    }*/
 
 }
