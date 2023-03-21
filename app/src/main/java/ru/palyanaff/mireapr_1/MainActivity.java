@@ -32,17 +32,7 @@ public class MainActivity extends AppCompatActivity {
                     .commit();
         }
 
-        /*orderList = new ArrayList<String>();
-
-        binding.pizzaButton.setOnClickListener(view -> {
-            Log.i(TAG, "Add pizza to basket");
-            orderList.add(binding.pizzaName.getText().toString());
-        });
-
-        binding.coffeeButton.setOnClickListener(view -> {
-            Log.i(TAG, "Add coffee to basket");
-            orderList.add(binding.coffeeName.getText().toString());
-        });*/
+        /**/
 
     }
 

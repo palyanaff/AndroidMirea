@@ -12,10 +12,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import ru.palyanaff.mireapr_1.databinding.FragmentBlankBinding;
+
 public class BlankFragment extends Fragment {
     private static final String TAG = "BlankFragment";
+    FragmentBlankBinding binding;
+    List orderList;
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        binding = FragmentBlankBinding.inflate(getLayoutInflater());
         super.onCreate(savedInstanceState);
         Toast.makeText(getContext(), "onCreate", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "onCreate");
@@ -26,7 +34,30 @@ public class BlankFragment extends Fragment {
                              Bundle savedInstanceState) {
         Toast.makeText(getContext(), "onCreateView", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "onCreateView");
-        return inflater.inflate(R.layout.fragment_blank, container, false);
+        View view = inflater.inflate(R.layout.fragment_blank, container, false);
+
+        orderList = new ArrayList<String>();
+
+        binding.pizzaButton.setOnClickListener(v-> {
+            Log.i(TAG, "Add pizza to basket");
+            orderList.add(binding.pizzaName.getText().toString());
+        });
+
+        binding.coffeeButton.setOnClickListener(v -> {
+            Log.i(TAG, "Add coffee to basket");
+            orderList.add(binding.coffeeName.getText().toString());
+        });
+
+        binding.makeOrderButton.setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("Order", orderList.toString());
+            bundle.putString("Address", binding.editTextAddress.getText().toString());
+            getParentFragmentManager().beginTransaction()
+                    .setReorderingAllowed(true)
+                    .replace(R.id.fragment_container_view, BlankFragment2.class, bundle).commit();
+        });
+
+        return view;
     }
 
     @Override
