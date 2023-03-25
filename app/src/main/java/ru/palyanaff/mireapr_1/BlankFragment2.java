@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import ru.palyanaff.mireapr_1.databinding.FragmentBlank2Binding;
 import ru.palyanaff.mireapr_1.databinding.FragmentBlankBinding;
@@ -30,16 +32,18 @@ public class BlankFragment2 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_blank2, container, false);
         String address = getArguments().getString("Address");
         String order = getArguments().getString("Order");
-        binding.text.setText("Address: " + address + "\n" +
+        TextView text = view.findViewById(R.id.text);
+        Button deliverButton = view.findViewById(R.id.deliver_button);
+
+        text.setText("Address: " + address + "\n" +
                 "Order: " + order);
 
-        binding.deliverButton.setOnClickListener(v-> {
-            Bundle bundle = new Bundle();
-            bundle.putString("Address", address);
-            bundle.putString("Order", order);
-            getParentFragmentManager().beginTransaction()
-                    .setReorderingAllowed(true)
-                    .replace(R.id.fragment_container_view, BlankFragment.class, bundle);});
+        deliverButton.setOnClickListener(v-> {
+            Bundle result = new Bundle();
+            result.putString("Order", order);
+            getParentFragmentManager().setFragmentResult(
+                    "requestKey", result);
+        });
         return view;
     }
 }

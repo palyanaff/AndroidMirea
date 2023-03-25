@@ -5,11 +5,14 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentResultListener;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -19,11 +22,11 @@ import ru.palyanaff.mireapr_1.databinding.FragmentBlankBinding;
 
 public class BlankFragment extends Fragment {
     private static final String TAG = "BlankFragment";
-    FragmentBlankBinding binding;
+    private FragmentBlankBinding binding;
     List orderList;
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        binding = FragmentBlankBinding.inflate(getLayoutInflater());
+
         super.onCreate(savedInstanceState);
         Toast.makeText(getContext(), "onCreate", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "onCreate");
@@ -32,29 +35,45 @@ public class BlankFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        binding = FragmentBlankBinding.inflate(inflater, container, false);
         Toast.makeText(getContext(), "onCreateView", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "onCreateView");
         View view = inflater.inflate(R.layout.fragment_blank, container, false);
 
         orderList = new ArrayList<String>();
 
-        binding.pizzaButton.setOnClickListener(v-> {
+        Button pizzaButton = view.findViewById(R.id.pizza_button);
+        Button coffeeButton = view.findViewById(R.id.coffee_button);
+        Button orderButton = view.findViewById(R.id.make_order_button);
+        EditText editText = view.findViewById(R.id.editText_address);
+
+        pizzaButton.setOnClickListener(v-> {
             Log.i(TAG, "Add pizza to basket");
             orderList.add(binding.pizzaName.getText().toString());
         });
 
-        binding.coffeeButton.setOnClickListener(v -> {
+        coffeeButton.setOnClickListener(v -> {
             Log.i(TAG, "Add coffee to basket");
             orderList.add(binding.coffeeName.getText().toString());
         });
 
-        binding.makeOrderButton.setOnClickListener(v -> {
+        orderButton.setOnClickListener(v -> {
+            Log.i(TAG, "BUTTON");
             Bundle bundle = new Bundle();
             bundle.putString("Order", orderList.toString());
-            bundle.putString("Address", binding.editTextAddress.getText().toString());
+            bundle.putString("Address", editText.getText().toString());
             getParentFragmentManager().beginTransaction()
                     .setReorderingAllowed(true)
                     .replace(R.id.fragment_container_view, BlankFragment2.class, bundle).commit();
+            getParentFragmentManager().setFragmentResultListener("requestKey",
+                    this, new FragmentResultListener() {
+                        @Override
+                        public void onFragmentResult(@NonNull String requestKey,
+                                                     @NonNull Bundle bundle) {
+                            String result = bundle.getString("bundleKey");
+                            binding.orderList.setText(result);
+                        }
+                    });
         });
 
         return view;

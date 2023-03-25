@@ -1,10 +1,16 @@
 package ru.palyanaff.mireapr_1;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +23,7 @@ public class SecondActivity extends AppCompatActivity {
     private ActivitySecondBinding binding;
     Bundle arguments;
 
+
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +35,9 @@ public class SecondActivity extends AppCompatActivity {
         binding.text.setText("Address: " + arguments.get("Address").toString() + "\n" +
                 "Order: " + arguments.get("Order").toString());
 
+
+
+
         binding.deliverButton.setOnClickListener(v-> {
             Intent intent = new Intent();
             intent.putExtra("Order", arguments.get("Order").toString());
@@ -35,4 +45,6 @@ public class SecondActivity extends AppCompatActivity {
             finish();
         });
     }
+
+
 }

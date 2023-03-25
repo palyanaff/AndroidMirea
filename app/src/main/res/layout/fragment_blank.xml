@@ -161,10 +161,12 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:onClick="goToBasket"/>
+            app:layout_constraintStart_toStartOf="parent"/>
 
-
+        <TextView
+            android:id="@+id/order_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
