@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,24 +26,14 @@ public class BlankFragment2 extends Fragment {
         binding = FragmentBlank2Binding.inflate(getLayoutInflater());
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_blank2, container, false);
-        String address = getArguments().getString("Address");
-        String order = getArguments().getString("Order");
-        TextView text = view.findViewById(R.id.text);
         Button deliverButton = view.findViewById(R.id.deliver_button);
 
-        text.setText("Address: " + address + "\n" +
-                "Order: " + order);
-
         deliverButton.setOnClickListener(v-> {
-            Bundle result = new Bundle();
-            result.putString("Order", order);
-            getParentFragmentManager().setFragmentResult(
-                    "requestKey", result);
+            Navigation.findNavController(view).navigate(R.id.action_blankFragment2_to_blankFragment);
         });
         return view;
     }
