@@ -1,6 +1,8 @@
 package ru.palyanaff.mireapr_1;
 
 import android.annotation.SuppressLint;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -19,11 +21,16 @@ import ru.palyanaff.mireapr_1.databinding.FragmentBlankBinding;
 public class BlankFragment2 extends Fragment {
 
     private static final String TAG = "BlankFragment2";
-    FragmentBlank2Binding binding;
+    private static String CHANNEL_ID = "Pizza order";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = FragmentBlank2Binding.inflate(getLayoutInflater());
+        CharSequence name = "Channel 2";
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, name, NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager notificationManager = getContext().getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(notificationChannel);
+        }
     }
 
     @Override
@@ -31,9 +38,13 @@ public class BlankFragment2 extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_blank2, container, false);
         Button deliverButton = view.findViewById(R.id.deliver_button);
+        TextView textView = view.findViewById(R.id.text);
 
+        textView.setText(getArguments().get("Order").toString());
         deliverButton.setOnClickListener(v-> {
-            Navigation.findNavController(view).navigate(R.id.action_blankFragment2_to_blankFragment);
+            Bundle bundle = new Bundle();
+            bundle.putString("Address", "New address");
+            Navigation.findNavController(v).navigate(R.id.action_blankFragment2_to_blankFragment);
         });
         return view;
     }
