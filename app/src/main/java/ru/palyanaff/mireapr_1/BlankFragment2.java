@@ -42,6 +42,8 @@ public class BlankFragment2 extends Fragment {
 
         textView.setText(getArguments().get("Order").toString());
         deliverButton.setOnClickListener(v-> {
+            Intent intent = new Intent(view.getContext(), MyService.class);
+            getContext().startService(intent);
             Bundle bundle = new Bundle();
             bundle.putString("Address", "New address");
             Navigation.findNavController(v).navigate(R.id.action_blankFragment2_to_blankFragment);
