@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/blankFragment">
+    app:startDestination="@id/menuFragment">
 
     <fragment
-        android:id="@+id/blankFragment"
-        android:name="ru.palyanaff.mireapr_1.BlankFragment"
+        android:id="@+id/menuFragment"
+        android:name="ru.palyanaff.mireapr_1.MenuFragment"
         android:label="fragment_blank"
-        tools:layout="@layout/fragment_blank" >
+        tools:layout="@layout/fragment_menu" >
         <action
-            android:id="@+id/action_blankFragment_to_blankFragment2"
+            android:id="@+id/action_menuFragment_to_blankFragment2"
             app:destination="@id/blankFragment2" />
     </fragment>
     <fragment
@@ -20,7 +20,7 @@
         android:label="fragment_blank2"
         tools:layout="@layout/fragment_blank2" >
         <action
-            android:id="@+id/action_blankFragment2_to_blankFragment"
-            app:destination="@id/blankFragment" />
+            android:id="@+id/action_blankFragment2_to_menuFragment"
+            app:destination="@id/menuFragment" />
     </fragment>
 </navigation>

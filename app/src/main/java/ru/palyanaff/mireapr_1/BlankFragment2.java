@@ -16,7 +16,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import ru.palyanaff.mireapr_1.databinding.FragmentBlank2Binding;
-import ru.palyanaff.mireapr_1.databinding.FragmentBlankBinding;
 
 public class BlankFragment2 extends Fragment {
 
@@ -46,7 +45,7 @@ public class BlankFragment2 extends Fragment {
             getContext().startService(intent);
             Bundle bundle = new Bundle();
             bundle.putString("Address", "New address");
-            Navigation.findNavController(v).navigate(R.id.action_blankFragment2_to_blankFragment);
+            Navigation.findNavController(v).navigate(R.id.action_blankFragment2_to_menuFragment);
         });
         return view;
     }
