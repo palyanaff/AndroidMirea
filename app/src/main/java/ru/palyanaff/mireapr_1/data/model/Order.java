@@ -10,6 +10,7 @@ public class Order {
     public Order(List<OrderItem> list, String address){
         this.list = list;
         this.address = address;
+        this.cost = getFinalCost();
     }
 
     public List<OrderItem> getList() {
@@ -28,12 +29,16 @@ public class Order {
         list.add(orderItem);
     }
 
-    public int getCost() {
+    public int getFinalCost() {
         int res = 0;
         for (int i = 0; i < list.size(); i++) {
             res += list.get(i).getCost();
         }
         return res;
+    }
+
+    public int getCost() {
+        return cost;
     }
 
     public void removeOrderItem(int index){

@@ -1,5 +1,6 @@
 package ru.palyanaff.mireapr_1.data.datasource;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import ru.palyanaff.mireapr_1.R;
 import ru.palyanaff.mireapr_1.data.model.OrderItem;
 
 public class MenuSource {
-    public static MutableLiveData<List<OrderItem>> initMenu(){
+    public static LiveData<List<OrderItem>> initMenu(){
         MutableLiveData<List<OrderItem>> list = new MutableLiveData<>();
         ArrayList<OrderItem> orderList = new ArrayList<>();
         for (int i = 0; i < 5; i++){
