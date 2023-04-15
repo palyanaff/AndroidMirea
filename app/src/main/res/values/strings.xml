@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">MireaPR_1</string>
     <string name="pepperoni">Pepe pizza</string>
-    <string name="price">From 300$</string>
+    <string name="price">From %1$d$</string>
     <string name="pizza_description">Pizza with pepperoni, cheese and tomato sauce</string>
     <string name="make_an_order">Make an order</string>
     <string name="latte">Lat(t)e</string>
@@ -10,4 +10,7 @@
     <string name="your_order">Your order</string>
     <string name="enter_your_address">Enter your address</string>
     <string name="pizza_rest">Pizza Rest</string>
+    <string name="sushi_name">Cockoro</string>
+    <string name="sushi_description">Sushi with tuna</string>
+    <string name="sushi_price">From 50$</string>
 </resources>

@@ -50,54 +50,21 @@
                 android:maxWidth="128dp"
                 android:text="@string/pizza_description"
                 android:textSize="@dimen/description_text_size"
-                android:layout_marginBottom="4dp"
-                app:layout_constraintBottom_toTopOf="@id/item_cost"
+                app:layout_constraintBottom_toTopOf="@id/item_button"
                 app:layout_constraintStart_toEndOf="@id/item_image"
                 app:layout_constraintTop_toBottomOf="@id/item_name" />
 
-            <TextView
-                android:id="@+id/item_cost"
+            <Button
+                android:id="@+id/item_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:text="@string/price"
-                android:textSize="@dimen/description_text_size"
                 android:layout_marginStart="16dp"
-                app:layout_constraintBottom_toTopOf="@+id/minus_button"
-                app:layout_constraintStart_toEndOf="@+id/item_image"
-                app:layout_constraintTop_toBottomOf="@+id/item_description" />
-
-            <ImageButton
-                android:id="@+id/minus_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/minus_button"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintBottom_toBottomOf="@+id/order_number_count"
-                app:layout_constraintEnd_toStartOf="@+id/order_number_count"
-                app:layout_constraintTop_toTopOf="@+id/order_number_count" />
-
-
-            <TextView
-                android:id="@+id/order_number_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1"
-                android:textSize="@dimen/header_text_size"
                 android:layout_marginBottom="16dp"
-                app:layout_constraintStart_toEndOf="@id/item_image"
+                android:text="@string/price"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintStart_toEndOf="@id/item_image" />
 
-            <ImageButton
-                android:id="@+id/plus_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/plus_button"
-                android:layout_marginStart="16dp"
-                app:layout_constraintBottom_toBottomOf="@+id/order_number_count"
-                app:layout_constraintStart_toEndOf="@+id/order_number_count"
-                app:layout_constraintTop_toTopOf="@+id/order_number_count" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

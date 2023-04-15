@@ -1,4 +1,4 @@
-package ru.palyanaff.mireapr_1;
+package ru.palyanaff.mireapr_1.ui.activity;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import ru.palyanaff.mireapr_1.R;
 import ru.palyanaff.mireapr_1.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/menuFragment"
-        android:name="ru.palyanaff.mireapr_1.MenuFragment"
+        android:name="ru.palyanaff.mireapr_1.ui.fragment.MenuFragment"
         android:label="fragment_blank"
         tools:layout="@layout/fragment_menu" >
         <action
@@ -16,9 +16,9 @@
     </fragment>
     <fragment
         android:id="@+id/blankFragment2"
-        android:name="ru.palyanaff.mireapr_1.BlankFragment2"
+        android:name="ru.palyanaff.mireapr_1.ui.fragment.OrderFragment"
         android:label="fragment_blank2"
-        tools:layout="@layout/fragment_blank2" >
+        tools:layout="@layout/fragment_order" >
         <action
             android:id="@+id/action_blankFragment2_to_menuFragment"
             app:destination="@id/menuFragment" />

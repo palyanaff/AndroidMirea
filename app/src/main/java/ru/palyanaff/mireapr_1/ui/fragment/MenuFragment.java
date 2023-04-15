@@ -1,4 +1,4 @@
-package ru.palyanaff.mireapr_1;
+package ru.palyanaff.mireapr_1.ui.fragment;
 
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,11 +16,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import ru.palyanaff.mireapr_1.data.datasource.MenuSource;
+import ru.palyanaff.mireapr_1.data.model.OrderItem;
+import ru.palyanaff.mireapr_1.ui.view_model.OrderViewModel;
+import ru.palyanaff.mireapr_1.R;
 import ru.palyanaff.mireapr_1.databinding.FragmentMenuBinding;
+import ru.palyanaff.mireapr_1.ui.adapter.MenuRecyclerAdapter;
 
 
 public class MenuFragment extends Fragment {
@@ -27,12 +34,15 @@ public class MenuFragment extends Fragment {
     private static String CHANNEL_ID = "Pizza order";
     private static final int NOTIFY_ID = 101;
     private FragmentMenuBinding binding;
+    OrderViewModel orderViewModel;
     List orderList;
 
+    public MenuFragment() {}
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = FragmentMenuBinding.inflate(getLayoutInflater());
+        orderViewModel = new ViewModelProvider(this).get(OrderViewModel.class);
     }
 
     @Override
@@ -40,22 +50,17 @@ public class MenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
 
-        orderList = new ArrayList<String>();
+        orderList = new ArrayList<OrderItem>();
 
-        RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
-        ArrayList<OrderItem> list = new ArrayList<>();
-        for (int i = 0; i < 5; i++){
-            list.add(new OrderItem(R.drawable.coffee_latte, getString(R.string.latte),
-                    getString(R.string.latte_description), getString(R.string.latte_price)));
-            list.add(new OrderItem(R.drawable.pizza_pepperoni, getString(R.string.pepperoni),
-                    getString(R.string.pizza_description), getString(R.string.price)));
-        }
+        RecyclerView recyclerView = view.findViewById(R.id.menu_recycler_view);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(manager);
-        MenuRecyclerAdapter adapter = new MenuRecyclerAdapter(getActivity(), list);
+        MenuRecyclerAdapter adapter = new MenuRecyclerAdapter(getActivity(), MenuSource.initMenu().getValue());
         recyclerView.setAdapter(adapter);
 
         Button makeOrderButton = view.findViewById(R.id.make_order_button);
+        EditText editText = view.findViewById(R.id.editText_address);
+
 
         makeOrderButton.setOnClickListener(v -> {
             NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), CHANNEL_ID)
@@ -70,7 +75,7 @@ public class MenuFragment extends Fragment {
 
 
             Bundle bundle = new Bundle();
-            bundle.putString("Order", orderList.toString());
+            bundle.putString("Address", editText.getText().toString());
             Navigation.findNavController(view).navigate(R.id.action_menuFragment_to_blankFragment2, bundle);
         });
 
