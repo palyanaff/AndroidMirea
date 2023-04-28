@@ -76,7 +76,7 @@ public class MenuFragment extends Fragment {
 
             Bundle bundle = new Bundle();
             bundle.putString("Address", editText.getText().toString());
-            Navigation.findNavController(view).navigate(R.id.action_menuFragment_to_blankFragment2, bundle);
+            Navigation.findNavController(view).navigate(R.id.action_menuFragment_to_dishFragment, bundle);
         });
 
         return view;

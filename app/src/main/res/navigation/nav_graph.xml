@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/menuFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/menuFragment"
@@ -14,8 +14,8 @@
             android:id="@+id/action_menuFragment_to_orderFragment"
             app:destination="@id/orderFragment" />
         <action
-            android:id="@+id/action_menuFragment_to_dishFragment2"
-            app:destination="@id/dishFragment2" />
+            android:id="@+id/action_menuFragment_to_dishFragment"
+            app:destination="@id/dishFragment" />
     </fragment>
     <fragment
         android:id="@+id/orderFragment"
@@ -30,7 +30,7 @@
             app:destination="@id/profileFragment" />
         <action
             android:id="@+id/action_orderFragment_to_dishFragment2"
-            app:destination="@id/dishFragment2" />
+            app:destination="@id/dishFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -47,7 +47,7 @@
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
-        android:id="@+id/dishFragment2"
+        android:id="@+id/dishFragment"
         android:name="ru.palyanaff.mireapr_1.ui.fragment.DishFragment"
         android:label="fragment_dish"
         tools:layout="@layout/fragment_dish" />
