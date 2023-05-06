@@ -11,12 +11,12 @@ import java.util.List;
 @Dao
 public interface UserDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void insert(User user);
+    void insert(UserEntity userEntity);
 
-    @Query("DELETE FROM user_table")
+    @Query("DELETE FROM UserEntity")
     void deleteAll();
 
-    @Query("SELECT * FROM user_table ORDER BY user_name ASC")
-    LiveData<List<User>> getAllUsers();
+    @Query("SELECT * FROM UserEntity ORDER BY user_name ASC")
+    LiveData<List<UserEntity>> getAllUsers();
 }
 

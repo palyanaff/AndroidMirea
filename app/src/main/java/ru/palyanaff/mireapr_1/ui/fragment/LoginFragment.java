@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import ru.palyanaff.mireapr_1.R;
-import ru.palyanaff.mireapr_1.data.entity.User;
+import ru.palyanaff.mireapr_1.data.entity.UserEntity;
 import ru.palyanaff.mireapr_1.data.repository.UserRepository;
 import ru.palyanaff.mireapr_1.ui.view_model.LoginViewModel;
 
@@ -51,9 +51,8 @@ public class LoginFragment extends Fragment {
             bundle.putString("Address", address);
             Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_orderFragment, bundle);
 
-            loginViewModel.setAddress(getContext(), "User", address);
-
-            userRepository.userDao.insert(new User(login, address));
+            loginViewModel.setAddress(getContext(), "UserEntity", address);
+            loginViewModel.setAddressToDb(login, address);
         });
 
         return view;

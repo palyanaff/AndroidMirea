@@ -31,6 +31,11 @@ public class LoginViewModel extends ViewModel {
     public void setAddress(Context context, String filename, String fileContent) {
         userRepository.setAddress(context, filename, fileContent);
     }
+
+    public void setAddressToDb(String n, String add) {
+        userRepository.setAddressToDb(n, add);
+    }
+
     public UserRepository getUserRepository() {
         return userRepository;
     }

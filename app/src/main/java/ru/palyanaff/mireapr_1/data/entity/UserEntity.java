@@ -4,8 +4,10 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import ru.palyanaff.mireapr_1.data.model.User;
+
 @Entity(tableName = "user_table")
-public class User {
+public class UserEntity {
     @PrimaryKey(autoGenerate = true)
     private int id;
     @ColumnInfo(name = "user_name")
@@ -13,17 +15,21 @@ public class User {
     @ColumnInfo(name = "user_address")
     private String userAddress;
 
-    public User(){
+    public UserEntity(){
 
     }
 
-    public User(String userName, String userAddress) {
+    public UserEntity(String userName, String userAddress) {
         this.userName = userName;
         this.userAddress = userAddress;
     }
 
     public int getId() {
         return id;
+    }
+
+    public User toDomainModel() {
+        return new User(userName, userAddress);
     }
 
     public String getUserName() {
