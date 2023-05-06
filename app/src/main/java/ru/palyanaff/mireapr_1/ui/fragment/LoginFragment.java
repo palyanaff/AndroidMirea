@@ -50,7 +50,9 @@ public class LoginFragment extends Fragment {
             bundle.putString("Login", login);
             bundle.putString("Address", address);
             Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_orderFragment, bundle);
-            loginViewModel.createFileSpecific(getContext(), "User", address);
+
+            loginViewModel.setAddress(getContext(), "User", address);
+
             userRepository.userDao.insert(new User(login, address));
         });
 
